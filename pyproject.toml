@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "limuza"
+version = "0.1.0"
+description = ""
+authors = ["tauhir <mtauhire@gmail.com>"]
+readme = "readme.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.8"
+psycopg2-binary = "^2.9.9"
+python-decouple = "^3.8"
+django-debug-toolbar = "^4.3.0"
+pytest-django = "^4.8.0"
+django-extensions = "^3.2.3"
+django-allauth = "^0.63.1"
+django-widget-tweaks = "^1.5.0"
+django-htmx = "^1.17.3"
+whitenoise = "^6.6.0"
+gunicorn = "^22.0.0"
+django-environ = "^0.11.2"
+django-browser-reload = "^1.12.1"
+django-multitenant = "^4.1.1"
+pytz = "^2024.1"
+assemblyai = "^0.31.0"
+django-invitations = "^2.1.0"
+pyyaml = "^6.0.2"
+celery = "^5.4.0"
+redis = "^5.0.8"
+django-celery-beat = "^2.6.0"
+ptvsd = "^4.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

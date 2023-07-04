@@ -1,0 +1,126 @@
+title System Entities and Relationships
+
+// Define tables
+user [icon: user, color: yellow] {
+  id string pk
+  name string
+  email string
+  role string
+  password string
+  accountId string fk
+}
+
+account [icon: briefcase, color: blue] {
+  id string pk
+  name string
+  createdAt timestamp
+}
+
+integration [icon: tool, color: green] {
+  id string pk
+  name string
+  type string
+  integrationKey string
+  createdAt timestamp
+  accountId string fk
+  createdBy string fk
+}
+
+freshdeskIntegration [icon: tool, color: green] {
+  id string pk
+  integration_ptr_id string fk
+}
+
+freshsalesIntegration [icon: tool, color: green] {
+  id string pk
+  integration_ptr_id string fk
+}
+
+// Add more specific integrations as needed...
+
+ticket [icon: ticket, color: red] {
+  id string pk
+  subject string
+  integrationId string fk
+  agentId string fk
+  createdAt timestamp
+  updatedAt timestamp
+  status string
+  ticketData json
+  htmlTicket text
+  textTicket text
+}
+
+scorecard [icon: clipboard, color: purple] {
+  id string pk
+  name string
+  createdBy string fk
+  createdAt timestamp
+  accountId string fk
+}
+
+category [icon: tag, color: orange] {
+  id string pk
+  name string
+  createdAt timestamp
+  scoreCardId string fk
+}
+
+review [icon: star, color: teal] {
+  id string pk
+  ticketId string fk
+  scoreCardId string fk
+  reviewerId string fk
+  agentId string fk
+  date timestamp
+  comments string
+}
+
+coachingSession [icon: users, color: pink] {
+  id string pk
+  reviewerId string fk
+  agentId string fk
+  scheduledDate timestamp
+  issuesAddressed string
+  improvementPlan string
+  sessionNotes string
+}
+
+calibrationSession [icon: calendar, color: lightblue] {
+  id string pk
+  reviewerId string fk
+  ticketId string fk
+  sessionDate timestamp
+}
+
+// End of tables
+
+// Relationships
+user.accountId > account.id
+user.id <> scorecard.createdBy
+user.id <> review.reviewerId
+user.id <> review.agentId
+user.id <> coachingSession.reviewerId
+user.id <> coachingSession.agentId
+user.id <> calibrationSession.reviewerId
+account.id <> user.accountId
+account.id <> integration.accountId
+account.id <> scorecard.accountId
+integration.id <> ticket.integrationId
+integration.createdBy > user.id
+ticket.agentId > user.id
+ticket.id <> review.ticketId
+scorecard.id <> category.scoreCardId
+scorecard.id <> review.scoreCardId
+category.scoreCardId > scorecard.id
+review.agentId > user.id
+review.reviewerId > user.id
+review.ticketId > ticket.id
+review.scoreCardId > scorecard.id
+coachingSession.reviewerId > user.id
+coachingSession.agentId > user.id
+calibrationSession.reviewerId > user.id
+calibrationSession.ticketId > ticket.id
+freshdeskIntegration.integration_ptr_id > integration.id
+freshsalesIntegration.integration_ptr_id > integration.id
+// Add more specific integrations as needed...

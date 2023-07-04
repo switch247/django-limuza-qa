@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "type": 1,
+        "author": {
+            "name": "Alex James",
+            "avatar": "/static/images/avatar/1.png"
+        },
+        "created_at": "11:46, Jul 26th 2024",
+        "content": "<p>Hi Jordan,</p><p>Thanks. Resolved</p><p>Kind regards,<br>Alex James<br>CTO</p><p>The information in this email and any attachments is confidential and is intended only for the use of the above-named recipient. The company accepts no liability for the content of this email, or for the consequences of any actions taken on the basis of the information provided unless that information is subsequently confirmed in writing. If you are not the intended recipient, any dissemination, distribution or copying of this email is strictly prohibited. If you have received this email in error, please advise immediately by return email.</p><img src='/static/images/chats/1.png' class='w-3/4' />",
+        "status": ""
+    },
+    {
+        "id": 2,
+        "type": 2,
+        "author": {
+            "name": "Bonnie Green",
+            "avatar": "/static/images/avatar/1.png"
+        },
+        "created_at": "11:46, Jul 25th 2024",
+        "content": "<p>Hi Alex,</p><p>This is a friendly follow-up on the below query. Should you still need any assistance, feel free to reply.</p><img src='/static/images/chats/2.png' class='w-3/4' /><p>Kind regards,<br>Jordan B<br>Product Specialist</p>",
+        "status": ""
+    },
+    {
+        "id": 3,
+        "type": 2,
+        "author": {
+            "name": "Bonnie Green",
+            "avatar": "/static/images/avatar/1.png"
+        },
+        "created_at": "11:46, Jul 25th 2024",
+        "content": "<p>Hi Alex,</p><p>Thank you for your chat yesterday. As discussed, kindly grant us view-only access to the company to take a look. To give the Support team access:</p><ul><li>Log into Dummy Pay.</li><li>Ensure that you are in the company that you need to grant access to by checking that the correct company name appears in the top left-hand corner of the screen. Switch companies if you need to by clicking on the switch link that appears when hovering the mouse next to the company name. Alternatively, go to the Profile icon and click on Companies.</li><li>Once you’re in the correct company, click on the Help icon (question mark) in the top right-hand corner and select Support.</li><li>Scroll down to the Grant Access button and click on it.</li></ul><p>Once done, please advise the name of the company and employee shared along with the period you are referring to?</p><p>Looking forward to your feedback.</p><p>Kind regards,<br>Jordan B<br>Product Specialist</p><i>The information in this email and any attachments is confidential and is intended only for the use of the above-named recipient. The company accepts no liability for the content of this email, or for the consequences of any actions taken on the basis of the information provided unless that information is subsequently confirmed in writing. If you are not the intended recipient, any dissemination, distribution or copying of this email is strictly prohibited. If you have received this email in error, please advise immediately by return email.</i>",
+        "status": ""
+    }
+]

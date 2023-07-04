@@ -1,0 +1,64 @@
+<!-- CREATED BY SMARTDEV-CODE 08/15/2024 -->
+{% extends "allauth/layouts/base.html" %}
+{% block content %}
+<div class="text-black">
+    <h1 class="text-black text-[48px] text-left">Login</h1> 
+    <form class="mt-8 space-y-6" method="post" action="{% url 'login' %}"  >
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="mb-4">
+                {% for error in form.non_field_errors %}
+                    <div class="p-3 bg-red-100 text-red-700 rounded-lg">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="space-y-2">
+            <label for="id_username">Your email</label>
+            <input type="email" id="id_username" name="username" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="name@example.com" />
+            {% if form.username.errors %}
+                <div class="text-red-600">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="space-y-2">
+            <label for="id_password">Password</label>
+            <input type="password" id="id_password" name="password" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="********" />
+            {% if form.password.errors %}
+                <div class="text-red-600">
+                    {% for error in form.password.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="flex justify-between items-center gap-2">
+            <label  class="flex justify-start items-center gap-2 cursor-pointer" for="id_remember">
+                <input type="checkbox" id="id_remember" name="remember" class="rounded-md w-5 h-5 border-gray-300 focus:outline-none active:outline-none" />
+                Remember me
+            </label>
+            <a href="/accounts/password/reset/" class="text-[#1A56DB]">Forget password?</a>
+        </div>
+        <button type="submit" class="rounded-lg w-full py-3 bg-[#1A56DB] text-white hover:bg-blue-500 mt-4 flex justify-center items-center">Login</button>
+    </form>
+    <div class="border-t mt-8 relative">
+        <span class="bg-white px-4 py-2 inline-block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">OR</span>
+    </div>
+    <div class="mt-8 space-y-3">
+        <a href="" class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-google.png" /> Log in with Google
+        </a>
+        <a href="" class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-apple.png" />Log in with Apple
+        </a>
+        <a href="" class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-microsoft.png" /> Log in with Microsoft
+        </a>
+    </div>
+    <div class="mt-6">
+        Not registered? <a href="/accounts/signup" class="text-[#1A56DB]">Register</a>
+    </div>
+</div>
+{% endblock %}

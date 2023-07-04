@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'filter' integration_id=integration.id %}" hx-post>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Filter</button>
+</form>
+
+<div id="ticket-list">
+    {% include '_ticket_list.html' %}
+</div>

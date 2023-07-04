@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'create_filter' integration.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="text" name="filter_name" placeholder="Filter name" required>
+    <button type="submit">Create Filter</button>
+</form>

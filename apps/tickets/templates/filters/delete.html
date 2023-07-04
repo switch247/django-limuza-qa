@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'delete_filter' saved_filter.id %}">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the filter "{{ saved_filter.name }}"?</p>
+    <button type="submit">Delete Filter</button>
+</form>

@@ -1,0 +1,21 @@
+"customizations": {
+    "vscode": {
+        "extensions": "./customizations/vscode/extensions.json",
+        "settings": {
+            "python.defaultInterpreterPath": "/usr/local/bin/python",
+            "python.linting.pylintEnabled": true,
+            "python.linting.enabled": true,
+            "python.formatting.provider": "black",
+            "python.formatting.blackArgs": ["--line-length", "88"],
+            "python.linting.mypyEnabled": true,
+            "python.linting.flake8Enabled": true,
+            "python.analysis.typeCheckingMode": "basic",
+            "editor.formatOnSave": true,
+            "files.exclude": {
+                "**/__pycache__": true,
+                "**/*.pyc": true,
+                "**/.DS_Store": true
+            }
+        }
+    }
+}

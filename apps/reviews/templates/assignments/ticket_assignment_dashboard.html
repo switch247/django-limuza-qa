@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Ticket Assignment Dashboard</h1>
+    <h2>Assignments</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ticket</th>
+                <th>Agent</th>
+                <th>Reviewer</th>
+                <th>Status</th>
+                <th>Assigned At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assignment in ticket_assignments %}
+                <tr>
+                    <td>{{ assignment.ticket.id }}</td>
+                    <td>{{ assignment.agent.username }}</td>
+                    <td>{{ assignment.reviewer.username }}</td>
+                    <td>{{ assignment.status }}</td>
+                    <td>{{ assignment.assigned_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Workload</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Workload</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user, workload in user_workloads.items %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ workload }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

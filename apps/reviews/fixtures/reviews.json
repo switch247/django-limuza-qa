@@ -1,0 +1,115 @@
+[
+{
+  "model": "reviews.category",
+  "pk": 1,
+  "fields": {
+    "account": 1,
+    "name": "Tone",
+    "scale": "3_point",
+    "allow_na": true
+  }
+},
+{
+  "model": "reviews.category",
+  "pk": 2,
+  "fields": {
+    "account": 1,
+    "name": "Spelling",
+    "scale": "binary",
+    "allow_na": false
+  }
+},
+{
+  "model": "reviews.category",
+  "pk": 3,
+  "fields": {
+    "account": 1,
+    "name": "Spelling",
+    "scale": "binary",
+    "allow_na": false
+  }
+},
+
+{
+  "model": "reviews.scorecard",
+  "pk": 5,
+  "fields": {
+    "account": 1,
+    "name": "Test Scorecard",
+    "created_by": 1,
+    "workspace": 1
+  }
+},
+{
+  "model": "reviews.scorecard",
+  "pk": 6,
+  "fields": {
+    "account": 1,
+    "name": "Test Scorecard",
+    "created_by": 1,
+    "workspace": 1
+  }
+},
+{
+  "model": "reviews.scorecardcategory",
+  "pk": 1,
+  "fields": {
+    "account": 1,
+    "scorecard": 6,
+    "category": 2,
+    "weighting": 1.5
+  }
+},
+{
+  "model": "reviews.scorecardcategory",
+  "pk": 2,
+  "fields": {
+    "account": 1,
+    "scorecard": 6,
+    "category": 1,
+    "weighting": 1.0
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 1,
+  "fields": {
+    "account": 1,
+    "scorecard": 6,
+    "reviewer": 1,
+    "agent": 1,
+    "date": "2024-07-28T10:36:48.462Z",
+    "draft": true,
+    "comments": "Test comments"
+  }
+},
+{
+  "model": "reviews.ticketreview",
+  "pk": 1,
+  "fields": {
+    "ticket": 6
+  }
+},
+{
+  "model": "reviews.reviewcategory",
+  "pk": 1,
+  "fields": {
+    "account": 1,
+    "review": 1,
+    "scorecard_category": 1,
+    "score": 3,
+    "na": false
+  }
+},
+{
+  "model": "reviews.reviewcategory",
+  "pk": 2,
+  "fields": {
+    "account": 1,
+    "review": 1,
+    "scorecard_category": 2,
+    "score": 1,
+    "na": false
+  }
+}
+]

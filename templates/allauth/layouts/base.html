@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Application{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/output.css' %}">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Import Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    {% block extra_head %}{% endblock %}
+    <style>
+        body,
+        html {
+            height: 100vh;
+            font-family: 'Inter';
+        }
+
+        /* Ref by Smartdev-code 2024-08-15 */
+        /* .auth-wrapper {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="flex justify-betwee h-full">
+        <div class="w-1/2 h-full relative">
+            <img src="{%static 'images/banner/1.jpg' %}" alt="Banner" class="w-full h-full object-cover object-center" />
+            <div class="absolute w-full h-full p-8 flex flex-col justify-between items-start top-0 left-0">
+                <a href="/" class="cursor-pointer">
+                    <img src="{%static 'images/logo/logo.png' %}" alt="LOGO" class="h-16" />
+                </a>
+                <div class="pb-16 space-y-2">
+                    <h2 class="text-3xl font-bold text-white">Review Manage, Expand</h2>
+                    <p>Take control of your services</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/2 h-full flex flex-col items-center justify-center p-4 bg-white">
+            <div class="w-3/4 mx-auto">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
+    {% block extra_body %}{% endblock %}
+</body>
+
+</html>

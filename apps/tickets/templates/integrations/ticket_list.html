@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-4">
+    <form method="post" action="{% url 'ticket_list' %}" class="mb-4 bg-white p-4 shadow rounded">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 gap-4">
+            {{ form.as_p }}
+            <input type="text" name="filter_name" placeholder="Filter name" required class="p-2 border rounded">
+        </div>
+        <div class="mt-2 flex space-x-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
+                Filter
+            </button>
+            <button type="submit" name="save_filter" class="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded">
+                Save Filter
+            </button>
+        </div>
+    </form>
+
+    <ul class="mb-4">
+        {% for filter_name in saved_filters.keys %}
+        <li class="mb-2">
+            <a href="{% url 'load_filter' filter_name %}" class="text-blue-500 hover:text-blue-700">
+                {{ filter_name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white shadow rounded">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">Subject</th>
+                    <th class="py-2 px-4 border-b">Status</th>
+                    <th class="py-2 px-4 border-b">Created At</th>
+                    <th class="py-2 px-4 border-b">Agent</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr class="hover:bg-gray-100">
+                    <td class="py-2 px-4 border-b">{{ ticket.subject }}</td>
+                    <td class="py-2 px-4 border-b">{{ ticket.status }}</td>
+                    <td class="py-2 px-4 border-b">{{ ticket.created_at }}</td>
+                    <td class="py-2 px-4 border-b">{{ ticket.agent }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

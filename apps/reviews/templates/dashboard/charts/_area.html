@@ -1,0 +1,29 @@
+{% load static %}
+<div class="h-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-2">
+  <div class="flex justify-between mb-3">
+    <div class="flex justify-center items-center">
+      <div class="flex flex-col">
+        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">{{ area_data.title_value }}</h5>
+        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">{{area_data.title}}</p>
+      </div>
+      <div class="flex items-center pl-12 text-base font-semibold text-green-500 dark:text-green-500 text-center">
+        {{area_data.improvement_value}}
+        <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="p-0" id="area-chart"></div>
+  <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"></div>
+  <div class="flex flex-row-reverse items-center">
+    <!-- Button -->
+    <a href="#" class="uppercase text-xs font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+      {{ chart_data.further_info_link }}
+      <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+      </svg>
+    </a>
+  </div>
+</div>
+<script src="{% static 'js/area1.js' %}"></script>

@@ -1,0 +1,220 @@
+{% load static %}
+<div class="left-0 bg-base-200 h-100 shadow-lg hidden lg:block sticky top-0 z-10"  x-data="{ logoutModal: false }">
+    <div class="flex flex-col justify-between py-4 h-full">
+        <div>
+            <div class="px-3 pb-4 space-y-4 menu">
+                <div>
+                    <a href="{% url 'show_dashboard' %}" class="p-3 inline-flex justify-center items-center rounded-lg">
+                        {% include "shared/elements/svg_color.html" with src='/static/images/logo/logo-shrink.png' class_name="" %}
+                    </a>
+                </div>
+                <!-- Navigation -->
+                <div>
+                    <ul class="space-y-2">
+                        <li>
+                            {% url 'show_dashboard' as url %}
+                            <a href="{% url 'show_dashboard' %}" class="p-3 inline-flex justify-center items-center rounded-lg 
+                            {% if request.path == url %} active {% endif %}">
+                                {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/chart.svg' class_name="" %}
+                            </a>
+                        </li>
+                        <li>
+                            {% url 'list_reviews' as url %}
+                            <a href="{% url 'list_reviews' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                                {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/star.svg' class_name="" %}
+                            </a>
+                        </li>
+                        <li>
+                            {% url 'coaching' as url %}
+                            <a href="{% url 'coaching' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                                {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/clipboard.svg' class_name="" %}
+                            </a>
+                        </li>
+            
+                        <li>
+                            {% url 'ticket_assignment_dashboard' as url %}
+                            <a href="{% url 'ticket_assignment_dashboard' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                                {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/inbox.svg' class_name="" %}
+                            </a>
+                        </li>
+                        <li>
+                            {% url 'view_tickets' as url %}
+                            <a href="{% url 'view_tickets' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                                {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/message.svg' class_name="" %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-b border-base-100 py-4 px-3 menu">
+                <ul class="space-y-2">
+                    <li>
+                            {% url 'show_dashboard' as url %}
+                            <a href="{% url 'show_dashboard' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                            {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/bag.svg' class_name="" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="py-3 px-3 menu">
+                <ul class="space-y-2">
+                    <li>
+                        {% url 'show_dashboard' as url %}
+                        <a href="{% url 'show_dashboard' %}" class="p-3 inline-flex justify-center items-center rounded-lg {% if request.path == url %} active {% endif %}">
+                            {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/users.svg' class_name="" %}
+                        </a>
+                    </li>
+                    <li class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="p-3 inline-flex justify-center items-center rounded-lg">
+                            {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/filter.svg' class_name="" %}
+                        </button>
+                        <ul x-show="open" @click.away="open = false"
+                            class="absolute left-full z-[1] -translate-y-1/2 p-2 shadow-lg bg-base-300 w-52 transition-opacity duration-200 after:absolute after:border-8 rounded-lg after:border-y-transparent after:border-s-transparent after:border-e-base-300 after:top-[52%] after:right-full after:z-10 before:hidden"
+                            style="display: none;">
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Light"
+                                    value="light" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dark" value="dark" />
+                            </li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cupcake"
+                                    value="cupcake" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Bumblebee"
+                                    value="bumblebee" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Emerald"
+                                    value="emerald" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Corporate"
+                                    value="corporate" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Synthwave"
+                                    value="synthwave" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro"
+                                    value="retro" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk"
+                                    value="cyberpunk" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"
+                                    value="valentine" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Garden"
+                                    value="garden" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua" />
+                            </li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Pastel"
+                                    value="pastel" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Fantasy"
+                                    value="fantasy" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Wireframe"
+                                    value="wireframe" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dracula"
+                                    value="dracula" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="CMYK" value="cmyk" />
+                            </li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Autumn"
+                                    value="autumn" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Business"
+                                    value="business" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Night"
+                                    value="night" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Coffee"
+                                    value="coffee" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Winter"
+                                    value="winter" /></li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dim" value="dim" />
+                            </li>
+                            <li><input type="radio" x-model="theme" name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Nord" value="nord" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="px-3 relative" x-data="{ open: false }">
+            <img src="{% static 'images/avatar/1.png' %}" class="w-full aspect-square rounded-full cursor-pointer"  @click="open = !open" />
+            <div class="menu absolute left-full z-[1] top-1/2 -translate-y-1/2 shadow-lg bg-base-300 transition-opacity duration-200 after:absolute after:border-8 rounded-lg after:border-y-transparent after:border-s-transparent after:border-e-base-300 after:top-1/2 after:right-full after:-translate-y-1/2 after:z-10 before:hidden" x-show="open" @click.away="open = false">
+                <ul>
+                    <li>
+                        <button href="{% url 'ticket_assignment_dashboard' %}" class="p-3 flex flex-nowrap justify-center items-center gap-2 rounded-lg" @click="logoutModal = true">
+                            {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/inbox.svg' class_name="" %} <span class="flex-shrink-0 whitespace-nowrap">Log Out</span>
+                        </button>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- LOGOUT CONFIRMA MODAL -->
+    <div  x-show="logoutModal" class="fixed w-full h-full flex justify-center items-center bg-gray-400 bg-opacity-20 top-0 left-0 z-10">
+        <!-- Modal Content -->
+        <div class="rounded-lg shadow-lg bg-base-100 relative z-50 max-[320px]" >
+            <form id="logout-form" class="p-6 relative" @click.away="logoutModal = false">
+                {% csrf_token %}
+                <button type="button" class='rounded-md hover:bg-base-300 absolute top-2 right-2 px-3 py-2 z-10' @click="logoutModal = false">
+                    {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/close.svg' class_name="!w-4 !h-4" %}
+                </button>
+                <div class='flex items-start justify-start gap-6'>
+                    <span class='flex items-center justify-center p-3 rounded-lg bg-base-300'>
+                        {% include "shared/elements/svg_color.html" with src='/static/images/icon/icon-sidebar/logout.svg' class_name="" %}
+                    </span>
+                    <div>
+                        <h4 class='font-bold text-lg'>Do you want to Log Out?</h4>
+                        <p>Please be aware that all unsaved data will be lost.</p>
+                        <div class='mt-4 flex justify-between items-center gap-4'>
+                            <button type="button" class='btn border border-gray-500 hover:bg-base-100 p-3 flex-1 flex justify-center items-center' @click="logoutModal = false">Cancel</button>
+                            <button type="submit" id="logout-submit" class='btn flex justify-center bg-[#B42318] hover:bg-[#da3428] p-3 flex-1 text-white'>Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('logout-submit').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var form = document.getElementById('logout-form');
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle successful logout (e.g., redirect to homepage, update UI)
+                window.location.href = '/accounts/login/'; // Redirect to the homepage or any other page
+            } else {
+                // Handle errors here
+                alert('Logout failed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>

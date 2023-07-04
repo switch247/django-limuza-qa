@@ -1,0 +1,49 @@
+{% load l10n %} <!-- Ensure you load the l10n template tag library -->
+<div class="flex flex-col h-full lg:border-r lg:border-r-base-200">
+    <div class="p-4 space-y-6">
+        <div class="relative">
+            <button class="absolute w-12  h-full inline-flex justify-center items-center"><i
+                    class="fa fa-search"></i></button>
+            <input type="search" class="py-3 pl-10 pr-3 rounded-lg border bg-transparent w-full text-sm"
+                placeholder="Search" />
+        </div>
+        <div class="grid grid-cols-2 gap-x-2 gap-y-4">
+            <button
+                class="btn btn-outline border whitespace-nowrap border-base-300 bg-base-100 px-3 py-2.5 inline-flex justify-between flex-nowrap items-center text-sm"
+                hx-get="/tickets/fetch-tickets?filter_by=last_7_days" hx-target="#ticket-list-container">
+                <span class="flex justify-start items-center gap-2">
+                    <i class="fa fa-clock"></i> Last 7 days
+                </span>
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <button
+                class="btn btn-outline border whitespace-nowrap border-base-300 bg-base-100 px-3 py-2.5 inline-flex justify-between flex-nowrap items-center text-sm"
+                hx-get="/tickets/fetch-tickets?filter_by=all_statys" hx-target="#ticket-list-container">
+                <span class="flex justify-start items-center gap-2">
+                    <i class="fa fa-edit"></i> All status
+                </span>
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <button
+                class="btn btn-outline border whitespace-nowrap border-base-300 bg-base-100 px-3 py-2.5 inline-flex justify-between flex-nowrap items-center text-sm"
+                hx-get="/tickets/fetch-tickets?filter_by=all_users" hx-target="#ticket-list-container">
+                <span class="flex justify-start items-center gap-2">
+                    <i class="fa fa-user"></i> All users
+                </span>
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <button
+                class="btn btn-outline border whitespace-nowrap border-base-300 bg-base-100 px-3 py-2.5 inline-flex justify-between flex-nowrap items-center text-sm"
+                hx-get="/tickets/fetch-tickets?filter_by=newest" hx-target="#ticket-list-container">
+                <span class="flex justify-start items-center gap-2">
+                    <i class="fa fa-star"></i> Newest
+                </span>
+                <i class="fa fa-angle-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="border-t border-base-200"></div>
+    <div class="flex-1 grow overflow-y-auto">
+        {% include "_ticket_list.html" with tickets=tickets %}
+    </div>
+</div>

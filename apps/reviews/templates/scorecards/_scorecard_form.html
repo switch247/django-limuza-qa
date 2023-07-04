@@ -1,0 +1,7 @@
+<form method="post" hx-post="{% url 'show_review' review.id %}" hx-swap="outerHTML">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary w-full">Save Review</button>
+    </div>
+</form>

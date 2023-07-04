@@ -1,0 +1,96 @@
+<!-- SLIDE EFFECT -->
+<div class="p-6 bg-[#F6F5FF] border-y border-y-[#D1D5DB]">
+    <div class="flex justify-between">
+        <b class="bg-gradient-to-r from-[#5C258D] to-[#4389A2] bg-clip-text text-transparent text-lg">Generated
+            Insights</b>
+        <span
+            class="flex justify-start items-center gap-1 bg-gradient-to-r from-[#5C258D] to-[#4389A2] bg-clip-text text-transparent">
+            <img src="/static/images/icon/ico-ai.svg" />
+            <span class="font-bold">Powered by AI</span>
+        </span>
+    </div>
+    <div x-data="carousel()" class=" mt-2">
+        <div class="overflow-hidden relative">
+            <div class="flex transition-transform duration-500"
+                :style="'transform: translateX(-' + currentSlide * 100 + '%)'">
+                <!-- Slide 1 -->
+                <div class="carousel-item flex-shrink-0 w-full">
+                    <div class="flex justify-start items-start gap-4">
+                        <img src="/static/images/icon/ico-bot.png" class="flex-shrink-0 w-12 h-12 rounded-full" />
+                        <div class="px-4 py-5 space-y-3 rounded-xl shadow bg-[#DCD7FE]">
+                            <b class="text-[#000000] font-bold">AI Assistant</b>
+                            <p class="text-[#111928]">Reviews completed has gone up by 13% but we've done 20%
+                                less coaching sessions. Unless the agents are all at levels you're Happy with,
+                                we shouldn't be doing less coaching sessions.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item flex-shrink-0 w-full">
+                    <div class="flex justify-start items-start gap-4">
+                        <img src="/static/images/icon/ico-bot.png" class="flex-shrink-0 w-12 h-12 rounded-full" />
+                        <div class="px-4 py-5 space-y-3 rounded-xl shadow bg-[#DCD7FE]">
+                            <b class="text-[#000000] font-bold">AI Assistant</b>
+                            <p class="text-[#111928]">Reviews completed has gone up by 13% but we've done 20%
+                                less coaching sessions. Unless the agents are all at levels you're Happy with,
+                                we shouldn't be doing less coaching sessions.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item flex-shrink-0 w-full">
+                    <div class="flex justify-start items-start gap-4">
+                        <img src="/static/images/icon/ico-bot.png" class="flex-shrink-0 w-12 h-12 rounded-full" />
+                        <div class="px-4 py-5 space-y-3 rounded-xl shadow bg-[#DCD7FE]">
+                            <b class="text-[#000000] font-bold">AI Assistant</b>
+                            <p class="text-[#111928]">Reviews completed has gone up by 13% but we've done 20%
+                                less coaching sessions. Unless the agents are all at levels you're Happy with,
+                                we shouldn't be doing less coaching sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-4">
+            <!-- Indicators -->
+            <div class="flex space-x-2">
+                <template x-for="(slide, index) in slides" :key="index">
+                    <button @click="currentSlide = index"
+                        :class="{ 'bg-[#111928]': currentSlide === index, 'bg-[#9CA3AF]': currentSlide !== index }"
+                        class="w-3 h-3 rounded-full">
+                    </button>
+                </template>
+            </div>
+            <!-- Navigation Buttons -->
+            <div class="flex justify-end items-center gap-3">
+                <button @click="prevSlide()"
+                    class="text-lg w-8 h-8 rounded-full bg-[#374151] text-white hover:bg-opacity-75 ">
+                    ‹
+                </button>
+                <button @click="nextSlide()"
+                    class="text-lg w-8 h-8 rounded-full bg-[#374151] text-white hover:bg-opacity-75">
+                    ›
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    function carousel() {
+        return {
+            currentSlide: 0,
+            totalSlides: 3,
+            slides: Array.from({ length: 3 }), // Adjust length based on number of slides
+            prevSlide() {
+                this.currentSlide = (this.currentSlide > 0) ? this.currentSlide - 1 : this.totalSlides - 1;
+            },
+            nextSlide() {
+                this.currentSlide = (this.currentSlide < this.totalSlides - 1) ? this.currentSlide + 1 : 0;
+            }
+        }
+    }
+</script>

@@ -1,0 +1,152 @@
+<!-- CREATED BY SMARTDEV-CODE 08/15/2024 -->
+{% extends "allauth/layouts/base.html" %}
+{% block content %}
+<div class="text-black">
+    <h1 class="text-black text-[48px] text-left">Sign Up</h1>
+    <form class="mt-4 space-y-4" method="post" action="{% url 'account_signup' %}" >
+        {% csrf_token %}
+         <!-- Error Messages -->
+        {% if form.non_field_errors %}
+            <div class="mb-4">
+                {% for error in form.non_field_errors %}
+                    <div class="p-3 bg-red-100 text-red-700 rounded-lg">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!-- Username Field -->
+        <div class="space-y-2">
+            <label for="id_username">User Name</label>
+            <input type="text" id="id_username" name="username" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="User name" />
+            {% if form.username.errors %}
+                <div class="text-red-600">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <!-- Email Field -->
+        <div class="space-y-2">
+            <label for="id_email">Your email(optional)</label>
+            <input type="email" id="id_email" name="email" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="name@example.com" />
+            {% if form.email.errors %}
+                <div class="text-red-600">
+                    {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <!-- Password Field -->
+        <div class="space-y-2">
+            <label for="id_password1">Password</label>
+            <div x-data="passwordStrength()" class="group relative">
+                <input x-model="password" x-on:focus="showPopup = true" x-on:blur="showPopup = false" type="password" id="id_password1" name="password1" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="********" />
+                {% if form.password1.errors %}
+                    <div class="text-red-600">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- POPUP -->
+                <div x-show="showPopup" x-transition
+                    class="absolute shadow-lg shadow-gray-400 w-[255px] bg-white rounded-md px-3 py-2 right-full -top-12 mr-3 after:absolute after:border-y-transparent after:border-s-white after:border-e-transparent after:border-8 after:left-full after:z-10 after:top-[58px]">
+                    <div class="font-bold text-sm">Password Strength</div>
+                    <div class="flex justify-between items-center gap-1 mt-3">
+                        <span :class="{'bg-[#FDBA8C]': strength >= 1, 'bg-[#E5E7EB]': strength < 1}" class="flex-1 h-[2px]"></span>
+                        <span :class="{'bg-[#FDBA8C]': strength >= 2, 'bg-[#E5E7EB]': strength < 2}" class="flex-1 h-[2px]"></span>
+                        <span :class="{'bg-[#FDBA8C]': strength >= 3, 'bg-[#E5E7EB]': strength < 3}" class="flex-1 h-[2px]"></span>
+                        <span :class="{'bg-[#FDBA8C]': strength >= 4, 'bg-[#E5E7EB]': strength < 4}" class="flex-1 h-[2px]"></span>
+                    </div>
+                    <div class="mt-2 text-gray-500 text-sm">
+                        <p class="text-gray-800">It’s better to have:</p>
+                        <ul class="mt-3 space-y-2">
+                            <li class="px-3 flex justify-start items-center gap-2">
+                                <img x-show="isUppercaseValid" src="/static/images/icon/ico-check.png" />
+                                <img x-show="!isUppercaseValid" src="/static/images/icon/ico-close.png" />
+                                <span>Upper & lower case letters</span>
+                            </li>
+                            <li class="px-3 flex justify-start items-center gap-2">
+                                <img x-show="hasSymbol" src="/static/images/icon/ico-check.png" />
+                                <img x-show="!hasSymbol" src="/static/images/icon/ico-close.png" />
+                                <span>A symbol (#$&)</span>
+                            </li>
+                            <li class="px-3 flex justify-start items-center gap-2">
+                                <img x-show="isLongerValid" src="/static/images/icon/ico-check.png" />
+                                <img x-show="!isLongerValid" src="/static/images/icon/ico-close.png" />
+                                <span>A longer password</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function passwordStrength() {
+                    return {
+                        password: '',
+                        showPopup: false,
+                        get strength() {
+                            let score = 0;
+                            if (this.password.length >= 6) score++;
+                            if (/[a-z]/.test(this.password) && /[A-Z]/.test(this.password)) score++;
+                            if (/[!@#$%^&*(),.?":{}|<>~]/.test(this.password)) score++;
+                            if (this.password.length >= 10) score++;
+                            return score;
+                        },
+                         get isLengthValid() {
+                            return this.password.length > 6;
+                        },
+                        get isUppercaseValid() {
+                            return /[a-z]/.test(this.password) && /[A-Z]/.test(this.password);
+                        },
+                        get hasSymbol() {
+                            return /[!@#$%^&*(),.?":{}|<>]/.test(this.password);
+                        },
+                        get isLongerValid() {
+                            return this.password.length > 10;
+                        }
+                    };
+                }
+            </script>
+        </div>
+         <!-- Confirm Password Field -->
+        <div class="space-y-2">
+            <label for="id_password2">Confirm Password</label>
+            <input type="password" id="id_password2" name="password2" class="rounded-lg border px-3 py-2 w-full border-gray-300" placeholder="********" />
+            {% if form.password2.errors %}
+                <div class="text-red-600">
+                    {% for error in form.password2.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="pt-2">
+            <button type="submit"
+                class="rounded-lg w-full py-3 bg-[#1A56DB] text-white hover:bg-blue-500">Create account</button>
+        </div>
+    </form>
+    <div class="border-t mt-8 relative">
+        <span
+            class="bg-white px-4 py-2 inline-block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">OR</span>
+    </div>
+    <div class="mt-8 space-y-3">
+        <a href=""
+            class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-google.png" /> Sign up with Google
+        </a>
+        <a href=""
+            class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-apple.png" />Sign up with Apple
+        </a>
+        <a href=""
+            class="w-full flex justify-center items-center gap-4 rounded-3xl py-3 border-2 border-gray-300 hover:bg-gray-300">
+            <img src="/static/images/icon/ico-microsoft.png" /> Sign up with Microsoft
+        </a>
+    </div>
+    <div class="mt-6">
+        Already registered? <a href="/accounts/login " class="text-[#1A56DB]">Log In</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<div id ='review_container'>
+    <h3 class="text-lg font-bold mb-4">Scorecard</h3>
+    <form method="post" id="scorecard-form" hx-post="{% url 'edit_review' review.id %}" hx-trigger="change" hx-target="#review_container">
+        {% csrf_token %}
+        <div class="form-control mb-4">
+            <label class="label" for="id_scorecard">
+                <span class="label-text">Select Scorecard</span>
+            </label>
+            {{ scorecard_form.scorecard }}
+            <input type="hidden" name="select_scorecard" value="true">
+        </div>
+    </form>
+    <form method="post" action="{% url 'save_review' review.id %}">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name not in "comments scorecard" %}
+                <div class="form-group mb-4">
+                    <label class="label" for="{{ field.id_for_label }}">
+                        <span class="label-text">{{ field.label }}</span>
+                    </label>
+                    {{ field }}
+                    <div class="w-full flex justify-between text-xs px-2">
+                        <span>|</span>
+                        <span>|</span>
+                        <span>|</span>
+                        <span>|</span>
+                        <span>|</span>
+                    </div>
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="form-group mb-4">
+            <label class="label" for="id_comments">
+                <span class="label-text">Comments</span>
+            </label>
+            {{ form.comments }}
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary w-full">Save Review</button>
+        </div>
+    </form>
+</div>

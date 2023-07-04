@@ -1,0 +1,12 @@
+Integration:
+  fields:
+    - name: subject
+      type: string
+    - name: status
+      type: string
+    - name: created_at
+      type: timestamp
+    - name: updated_at
+      type: timestamp
+    - name: id
+      type: integer

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="px-4 py-6">
+    <div class="rounded-lg p-4 shadow bg-base-100">
+        <h4 class="text-4xl">Create Ticket</h4>
+        <form method="post" class="mt-8 space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="justify-end items-center gap-2">
+                <a href="/tickets" class="btn"><i class="fa fa-arrow-left"></i>Back to list</a>
+                <button type="submit" class="btn">Create Ticket</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

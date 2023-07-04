@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Scorecard: {{ scorecard.name }}</h1>
+    <p><strong>ID:</strong> {{ scorecard.id }}</p>
+    <p><strong>Name:</strong> {{ scorecard.name }}</p>
+    <p><strong>Created By:</strong> {{ scorecard.created_by.username }}</p>
+    <p><strong>Created At:</strong> {{ scorecard.created_at }}</p>
+    <p><strong>Account ID:</strong> {{ scorecard.account_id }}</p>
+
+    <h2 class="text-xl font-bold mt-4">Categories</h2>
+    <table class="table-auto w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Category</th>
+                <th class="px-4 py-2">Weighting</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sc_category in scorecard_categories %}
+            <tr>
+                <td class="border px-4 py-2">{{ sc_category.category.name }}</td>
+                <td class="border px-4 py-2">{{ sc_category.weighting }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

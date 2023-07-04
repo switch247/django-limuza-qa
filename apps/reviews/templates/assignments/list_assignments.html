@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mx-auto py-6 px-4">
+    <h1 class="text-4xl">Assignments</h1>
+    <div class="rounded-lg shadow-lg bg-base-100 mt-6">
+        <div class="flex max-lg:flex-col gap-4 max-lg justify-between lg:items-center p-4">
+            <div class="relative">
+                <button class="absolute w-12  h-full inline-flex justify-center items-center"><i class="fa fa-search"></i></button>
+                <input type="search" class="py-3 pl-10 pr-3 rounded-lg border bg-transparent w-full lg:w-96 text-sm" placeholder="Search"  />
+            </div>
+            <div class="flex justify-end items-center gap-2">
+                <button class="btn rounded-lg whitespace-nowrap flex justify-center items-center gap-2 bg-base-300 hover:bg-base-200 max-lg:flex-1 lg:w-56 test-sm">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+                <a href="{% url 'create_ticket_assignment' %}" class="btn rounded-lg whitespace-nowrap flex justify-center items-center gap-2 bg-[#1A56DB] text-white max-lg:flex-1 lg:w-56 test-sm"><i class="fa fa-plus"></i> Create New Ticket</a>
+            </div>
+        </div>
+        <div  class="overflow-auto">
+          <table class="table-auto w-full mt-4">
+              <thead class="bg-base-200 uppercase">
+                  <tr>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap"><input type="checkbox" class="w-5 h-5 rounded border border-base-300 bg-transparent" /></th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Assignment Rule <i class="fa fa-sort"></i> </th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Reviewer <i class="fa fa-filter"></i></th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Reviews</th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Status</th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Completion %</th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Period <i class="fa fa-sort"></i></th>
+                      <th class="p-4 text-left tracking-wider whitespace-nowrap">Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for assignment in assignments %}
+                  <tr>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap"><input type="checkbox" class="w-5 h-5 rounded border border-base-300 bg-transparent" /></td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.assignment_rule.name }}</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.reviewer.username }}</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.reviews.count }}</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.get_status_display }}</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.completion_percentage }}%</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap">{{ assignment.start_date }} to {{ assignment.end_date }}</td>
+                      <td class="p-4 text-left tracking-wider whitespace-nowrap"><button class="btn btn-sm"><i class="fa fa-pencil"></i> Edit</button></td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+            <span>Showing <span class="fsearchont-bold">1</span>~<span class="font-bold">4</span> of <span class="font-bold">4</span></span>
+            <ul class="flex h-10 items-center border border-base-300 rounded-md overflow-hidden">
+                <li>
+                  <a href="#" class="p-3 border-r border-base-300 hover:bg-base-200">
+                    <i class="fa fa-angle-left"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="p-3 border-r border-base-300 hover:bg-base-200">
+                    1
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="p-3 border-r border-base-300 hover:bg-base-200">
+                    2
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="p-3 border-r border-base-300 hover:bg-base-200">
+                    3
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="p-3 border-r border-base-300 hover:bg-base-200">
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

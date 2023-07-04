@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="px-4 py-6 h-full bg-base-200">
+    <div class="flex max-lg:flex-col bg-base-100 rounded-lg shadow max-h-full">
+        <div id="ticket-list" class="resize-x w-full max-h-full lg:w-80 min-w-[200px] ">
+            {% include '_list.html' %}
+        </div>
+        <div id="ticket-content" class="flex-1 flex max-h-full">
+            {% include '_ticket.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

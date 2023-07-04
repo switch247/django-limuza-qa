@@ -1,0 +1,47 @@
+{
+    "name": "MartialQA Development",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/code",
+    "remoteUser": "django-user",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "njpwerner.autodocstring"
+            ],
+            "settings": {
+                "python.testing.pytestArgs": [
+                    "."
+                ],
+                "python.jediEnabled": true,
+                "python.formatting.provider": "black",
+                "python.linting.flake8Enabled": true,
+                "python.linting.mypyEnabled": true,
+                "python.linting.pydocstyleEnabled": true,
+                "python.linting.pylintEnabled": false,
+                "autoDocstring.docstringFormat": "numpy",
+                "autoDocstring.guessTypes": false
+            }
+        }
+    },
+    "remoteEnv": {
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASS": "mypassword",
+        "POSTGRES_DB": "martialqa",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_HOST": "postgres_db"
+    },
+    "mounts": [
+        "source=.,target=/code,type=bind,consistency=cached"
+    ],
+    "portsAttributes": {
+        "8000": {
+            "label": "Django Development Server",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": "git config --global --add safe.directory /code",
+    "shutdownAction": "stopCompose"
+}

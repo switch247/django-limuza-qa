@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "9000"
+            ],
+            "django": true,
+            "autoStartBrowser": false,
+            "env": {
+                "POSTGRES_USER": "postgres",
+                "POSTGRES_PASS": "mypassword",
+                "POSTGRES_DB": "martialqa"
+                
+            }
+        },
+        {
+            "name": "Python: Remote Attach",
+            "type": "python",
+            "request": "attach",
+            "port": 8888,
+            "host": "localhost",
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "/code"
+                }
+            ]
+        }
+    ]
+}

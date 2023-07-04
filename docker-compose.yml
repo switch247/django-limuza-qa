@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+  web:  # Renamed from 'devcontainer' to 'web' to better reflect its role
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace:cached
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: mypassword
+      POSTGRES_DB: martialqa
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST: postgres_db
+    ports:
+      - 8000:8000  # Django server
+      - 8888:8888  # Debugger port
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres_db
+      - redis
+
+
+  postgres_db:
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: martialqa
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_PORT: 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: demo-pgadmin #you can change this
+    depends_on:
+      - postgres_db
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: always
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+      
+  # celery:
+  #   build: .
+  #   command: ["celery", "-A", "limuza", "worker", "--loglevel=info"]
+  #   volumes:
+  #     - .:/code
+  #   depends_on:
+  #     - redis
+  #     - web
+
+  # celerybeat:
+  #   build: .
+  #   command: ["celery", "-A", "limuza", "beat", "--loglevel=info", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler"]
+  #   volumes:
+  #     - .:/code
+  #   depends_on:
+  #     - redis
+  #     - web
+  #     - postgres_db
+
+volumes:
+  postgres_data:

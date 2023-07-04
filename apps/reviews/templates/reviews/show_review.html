@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex h-full">
+    <div id="ticket-data" class="w-1/4 min-w-[200px] bg-gray-100 p-4 overflow-y-auto">
+        {% include 'reviews/_ticket_review_data.html' %}
+    </div>
+    <div id="ticket-view" class="w-1/2 bg-gray-200 p-4 overflow-y-auto">
+        {% include '_ticket_view.html' %}
+    </div>
+    <div id="scorecard-view" class="w-1/4 min-w-[200px] bg-white p-4 overflow-y-auto">
+        {% include 'reviews/_review_view.html' %}
+    </div>
+</div>
+{% endblock %}

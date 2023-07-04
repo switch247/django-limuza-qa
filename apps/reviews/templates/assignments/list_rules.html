@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-4">Assignment Rules</h1>
+    <a href="{% url 'create_assignment_rule' %}" class="btn btn-primary mb-4">Create New Assignment Rule</a>
+    <table class="table-auto w-full">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Reviewers</th>
+                <th>Criteria</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rule in rules %}
+            <tr>
+                <td>{{ rule.name }}</td>
+                <td>{{ rule.description }}</td>
+                <td>
+                    {% for reviewer in rule.reviewers.all %}
+                    {{ reviewer.username }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ rule.criteria }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

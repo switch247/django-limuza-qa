@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @tailwind forms; */
+
+* {
+    font-family: "Inter";
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar */
+    height: 5px;
+    /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF;
+    /* Background of the scrollbar track */
+    /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E5E7EB;
+    /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #dbdcdd;
+    /* Color of the thumb on hover */
+}
+
+
+.custom-chat i {
+    font-style: italic;
+}
+
+.custom-chat ul li {
+    list-style: square;
+    list-style-position: inside;
+}

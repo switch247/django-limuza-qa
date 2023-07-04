@@ -1,0 +1,12 @@
+FreshdeskIntegration:
+  fields:
+    - name: subject
+      type: string
+    - name: status
+      type: string
+    - name: created_at
+      type: timestamp
+    - name: tags
+      type: array
+    - name: id
+      type: integer

@@ -1,0 +1,54 @@
+<ul id="ticket-list-container" x-data="{ selectedTicketId: null }">
+    {% if not tickets %}
+    <li class="p-4">
+        <p>No tickets available.</p>
+    </li>
+    {% else %}
+    {% for t in tickets %}
+    <li :class="{'bg-base-100': selectedTicketId === {{ t.id }}}"
+        class="px-2 py-4 border-b border-base-200 select-none hover:bg-base-100 cursor-pointer {% if ticket.id == t.id %}bg-base-100{% endif %}"
+        x-on:click="selectedTicketId = {{ t.id }}" hx-get="/tickets/{{ t.id }}" hx-trigger="click"
+        hx-target="#ticket-content">
+        <div class="flex justify-between items-start">
+            <div class="flex justify-start items-center gap-2">
+                <span
+                    class="inline-flex justify-center items-center flex-shrink-0 rounded-full aspect-square w-12 h-12 text-lg font-bold bg-base-100 shadow">
+                    {{ t.account.name|slice:":1"|upper }}
+                </span>
+                <!-- Uncomment and update if needed
+                <img src="{{ t.creator.avatar }}"
+                    class="w-12 h-12 flex-shrink-0 rounded-full aspect-square" />
+                -->
+                <div class="space-y-0 font-semibold text-sm max-w-48">
+                    <div>{{ t.subject }}</div>
+                </div>
+            </div>
+            <span class="text-opacity-50 text-sm whitespace-nowrap">{{ t.created_at|date:"D, M d" }}</span>
+        </div>
+        <div class="flex justify-end">
+            {% if t.status|lower == 'open' %}
+            <span
+                class="rounded-2xl px-2 py-0.5 text-xs flex justify-center items-center gap-1 bg-[#DEF7EC] text-[#03543F]">
+                <span class="inline-block rounded-full w-3 h-3 bg-[#0E9F6E]"></span> Open
+            </span>
+            {% elif t.status == '2' %}
+            <span
+                class="rounded-2xl px-2 py-0.5 text-xs flex justify-center items-center gap-1 bg-[#FFF8F1] text-[#03543F]">
+                <span class="inline-block rounded-full w-3 h-3 bg-[#0E9F6E]"></span> Pending
+            </span>
+            {% elif t.status == '3' %}
+            <span
+                class="rounded-2xl px-2 py-0.5 text-xs flex justify-center items-center gap-1 bg-[#FFF8F1] text-[#03543F]">
+                <span class="inline-block rounded-full w-3 h-3 bg-[#0E9F6E]"></span> Resolved
+            </span>
+            {% elif t.status == '5' %}
+            <span
+                class="rounded-2xl px-2 py-0.5 text-xs flex justify-center items-center gap-1 bg-[#FFF8F1] text-[#8A2C0D]">
+                <span class="inline-block rounded-full w-3 h-3 bg-[#FF5A1F]"></span> Closed
+            </span>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
